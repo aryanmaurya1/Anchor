@@ -1,0 +1,9 @@
+{
+  "service_name": "webhooks",
+  "log_level": "debug",
+  "port":"9000",
+  "hostname" : "0.0.0.0",
+  "database": {
+    "filename": "database.sqlite"
+  }
+}
