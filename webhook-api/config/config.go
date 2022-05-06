@@ -8,7 +8,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type config struct {
+type Config struct {
 	ServiceName string `json:"service_name"`
 	Loglevel    string `json:"log_level"`
 	Port        string `json:"port"`
@@ -26,7 +26,7 @@ func New(logger *logrus.Logger) *cfg {
 	return &cfg{logger: logger}
 }
 
-func (c *cfg) ReadConfig(filepath string) (*config, error) {
+func (c *cfg) ReadConfig(filepath string) (*Config, error) {
 	file, err := os.Open(filepath)
 	if err != nil {
 		c.logger.Errorf("[ERROR READING CONFIG] %+v", err.Error())
@@ -39,7 +39,7 @@ func (c *cfg) ReadConfig(filepath string) (*config, error) {
 		return nil, err
 	}
 
-	var config = &config{}
+	var config = &Config{}
 	err = json.Unmarshal(data, config)
 	if err != nil {
 		c.logger.Errorf("[ERROR READING CONFIG] %+v", err.Error())
