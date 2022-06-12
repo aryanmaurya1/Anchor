@@ -32,6 +32,7 @@ func (c *cfg) ReadConfig(filepath string) (*Config, error) {
 		c.logger.Errorf("[ERROR READING CONFIG] %+v", err.Error())
 		return nil, err
 	}
+	defer file.Close()
 
 	data, err := ioutil.ReadAll(file)
 	if err != nil {
